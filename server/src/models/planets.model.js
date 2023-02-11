@@ -1,3 +1,41 @@
-const planets = ['earth'];
+const { rejects } = require('assert');
+const { parse } = require('csv-parse');
+const fs = require('fs');
+const { resolve } = require('path');
+const path = require('path');
 
-module.exports = planets;
+const habitablePlanets = [];
+
+function isHabitPlanet(planet) {
+    return planet['koi_disposition'] === 'CONFIRMED' && planet['koi_insol'] > 0.36 && planet['koi_insol'] < 1.11 && planet['koi_prad'] < 1.6;
+}
+
+function loadPlanetData() {
+    return new Promise((resolve, reject) => { 
+        fs.createReadStream(path.join(__dirname,'..','..','data','kepler_data.csv'))
+        .pipe(parse({
+            comment: '#',
+            columns: true
+        }))
+        .on('data', (data) => {
+            if (isHabitPlanet(data)) {
+                habitablePlanets.push(data);
+            }
+        })
+        .on('error', (err) => {
+            console.log(err);
+            reject(err);
+        })
+        .on('end', () => {
+            // console.log(habitablePlanets.map((planet) => {
+            //     return planet['kepler_name']
+            // }));
+            console.log(`\n${habitablePlanets.length} habitable planets found!\n`);
+            resolve();
+        });
+    })};
+
+module.exports = {
+    loadPlanetData,
+    planets: habitablePlanets,
+};
