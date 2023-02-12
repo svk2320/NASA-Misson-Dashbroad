@@ -7,9 +7,12 @@
     "install-server": "npm install --prefix server",
     "install-client": "npm install --prefix client",
     "install-globally": "concurrently \"npm install-server\" \"npm install-client\"",
+
     "server": "npm run watch --prefix server",
     "client": "npm run start --prefix client",
+
     "watch": "concurrently \"npm run server\" \"npm run client\"",
+
     "deploy": "npm run build --prefix client && npm start --prefix server",
     "test": "npm run test --prefix server && npm run test --prefix client"
   },
@@ -28,5 +31,3 @@
     "concurrently": "^7.6.0"
   }
 }
-
-
