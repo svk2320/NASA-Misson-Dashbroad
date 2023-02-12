@@ -9,7 +9,7 @@ function httpAddNewLauch(req, res) {
 
     if (!launch.mission || !launch.rocket || !launch.launchDate || !launch.target) {
         res.status(400).json({
-            error: 'Missing required lauch property'
+            error: 'Missing required launch property'
         });
     }
 
