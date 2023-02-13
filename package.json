@@ -7,12 +7,9 @@
     "install-server": "npm install --prefix server",
     "install-client": "npm install --prefix client",
     "install-globally": "concurrently \"npm install-server\" \"npm install-client\"",
-
     "server": "npm run watch --prefix server",
     "client": "npm run start --prefix client",
-
     "watch": "concurrently \"npm run server\" \"npm run client\"",
-
     "deploy": "npm run build --prefix client && npm start --prefix server",
     "deploy-cluster": "npm run build --prefix client && npm run cluster --prefix server ",
     "test": "npm run test --prefix server && npm run test --prefix client"
@@ -29,6 +26,7 @@
   },
   "homepage": "https://github.com/vasanth2401/NASA-Misson-Dashbroad#readme",
   "dependencies": {
-    "concurrently": "^7.6.0"
+    "concurrently": "^7.6.0",
+    "mongoose": "^6.9.1"
   }
 }
