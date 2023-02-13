@@ -7,7 +7,8 @@
     "start": "set PORT=8000 && node src/server.js",
     "watch": "nodemon src/server.js",
     "test": "jest",
-    "test-watch": "jest --watch"
+    "test-watch": "jest --watch",
+    "cluster": "pm2 start src/server.js -i max"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +18,8 @@
     "csv-parse": "^5.3.5",
     "express": "^4.18.2",
     "morgan": "^1.10.0",
-    "nasa-misson-dashbroad": "file:.."
+    "nasa-misson-dashbroad": "file:..",
+    "pm2": "^5.2.2"
   },
   "devDependencies": {
     "jest": "^29.4.2",
