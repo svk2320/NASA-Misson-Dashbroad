@@ -9,7 +9,7 @@ async function httpAddNewLauch(req, res) {
     const launch = req.body;
 
     if (!launch.mission || !launch.rocket || !launch.launchDate || !launch.target) {
-        res.status(400).json({
+        return res.status(400).json({
             error: 'Missing required launch property'
         });
     }
@@ -17,12 +17,11 @@ async function httpAddNewLauch(req, res) {
     launch.launchDate = new Date(launch.launchDate);
     if (isNaN(launch.launchDate)) {  
         return res.status(400).json({
-            error: 'Invalid launch data',
+            error: 'Invalid launch date',
         });
     }
 
     await scheduleNewLaunch(launch);
-    console.log(launch);
     return res.status(201).json(launch);
 }
 
@@ -30,7 +29,6 @@ async function httpAbortLauch(req, res) {
     const launchId = Number(req.params.id);
 
     const existsLaunch = await existsLauchWithId(launchId);
-    console.log()
     if (!existsLaunch){
         return res.status(404).json({
             error: 'Lauch not found',
