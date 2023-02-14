@@ -3,10 +3,12 @@ const app = require('../../app');
 const { mongoConnect, mongoDisconnect } = require('../../services/mongo');
 
 describe('launches API', () => {
+    // Connecting mongo to start the test
     beforeAll( async () => {
         await mongoConnect();
     });
 
+    // Disconnecting mongoDB to exit the test
     afterAll( async () => {
         await mongoDisconnect();
     });
