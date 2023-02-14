@@ -7,12 +7,15 @@ const planets = require('./planets.mongo');
 
 async function getAllPlanets() {
     // return habitablePlanets;
-    return await planets.find({});
+    return await planets.find({}, {
+        '__v': 0,
+        '_id': 0
+    });
 };
 
 async function savePlanet(planet) {
     try {
-        await planets.updateOne({
+        await planets.updateOne({ 
             kepler_name: planet.kepler_name
         }, {
             kepler_name: planet.kepler_name
