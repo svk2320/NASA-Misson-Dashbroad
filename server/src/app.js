@@ -13,7 +13,7 @@ app.use(cors({
 }));
 
 // prints out the loggers
-app.use(morgan('combined'));
+// app.use(morgan('combined'));
 
 app.use(express.json());
 
