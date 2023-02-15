@@ -9,18 +9,18 @@ const DEFAULT_FLIGHT_NUMBER = 100;
 
 // let lastestFlighNumber = 100;
 
-const launch = {
-    flightNumber: 100,
+// const launch = {
+//     flightNumber: 100,
     
-    mission: 'kepler Exploration X',
-    rocket: 'Explorer IS1',
-    launchDate: new Date('December 27, 2024'),
-    target: 'Kepler-442 b',
+//     mission: 'kepler Exploration X',
+//     rocket: 'Explorer IS1',
+//     launchDate: new Date('December 27, 2024'),
+//     target: 'Kepler-442 b',
 
-    customer: ['NASA', 'SpaceX'],
-    upcoming: true,
-    success: true
-};
+//     customer: ['NASA', 'SpaceX'],
+//     upcoming: true,
+//     success: true  
+// };
 
 // launches.set(launch.flightNumber, launch);
 
@@ -73,7 +73,7 @@ async function populateLaunches() {
             customers
         };
 
-        // console.log(`${launch.flightNumber} ${launch.mission}`);
+        console.log(`${launch.flightNumber} ${launch.mission}`);
 
         await saveLaunch(launch);
     }
@@ -124,6 +124,9 @@ async function getAllLaunches(skip, limit) {
     // return Array.from(launches.values());
     return await launchesDB
         .find({}, {'_id': 0,'__v': 0})
+        .sort({ 
+            flightNumber: 1
+         })
         .skip(skip)
         .limit(limit);
 };
@@ -185,7 +188,7 @@ async function abortLaunchById(launchId){
     return aborted.ok === 1 && aborted.nModified === 1;
     }
 
-saveLaunch(launch);
+// saveLaunch(launch);
 
 module.exports = {
     loadLaunchData,
