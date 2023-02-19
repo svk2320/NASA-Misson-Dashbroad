@@ -29,8 +29,10 @@ async function httpAddNewLauch(req, res) {
 
 async function httpAbortLauch(req, res) {
     const launchId = Number(req.params.id);
+    console.log(req.params.id);
 
     const existsLaunch = await existsLauchWithId(launchId);
+    console.log(existsLaunch);
     if (!existsLaunch){
         return res.status(404).json({
             error: 'Lauch not found',
