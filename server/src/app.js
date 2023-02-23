@@ -10,8 +10,8 @@ app.use(cors({
     origin: 'http://localhost:3000'
 }));
 
-// prints out the loggers
-// app.use(morgan('combined'));
+prints out the loggers
+app.use(morgan('combined'));
 
 app.use(express.json());
 
